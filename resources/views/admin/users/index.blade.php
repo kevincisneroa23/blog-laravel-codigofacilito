@@ -32,7 +32,7 @@
 					<span class="glyphicon glyphicon-pencil"></span> 
 				</a>
 
-				<a href="{{ route('admin.users.destroy',$user->id) }}" class="btn btn-danger"> 
+				<a href="{{ route('admin.users.destroy',$user->id) }}" class="btn btn-danger" onclick="return confirm('Esta segura de eliminarlo')"> 
 					<span class="glyphicon glyphicon-trash"></span> 
 				</a>
 				
