@@ -19,8 +19,8 @@
 	</div>
 
 	<div class="form-group">
-		{!! Form::label('tag_id','Etiquetas') !!}
-		{!! Form::select('tag_id',$tags, null, ['class' => 'form-control', 'placeholder' => 'Seleccione una etiqueta...', 'multiple', 'required']) !!}
+		{!! Form::label('tags','Etiquetas') !!}
+		{!! Form::select('tags[]',$tags, null, ['class' => 'form-control', 'placeholder' => 'Seleccione una etiqueta...', 'multiple', 'required']) !!}
 	</div>
 
 	<div class="form-group">

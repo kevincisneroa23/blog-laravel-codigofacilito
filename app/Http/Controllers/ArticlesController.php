@@ -8,6 +8,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Category;
 use App\Tag;
+use App\Article;
+use App\Image;
+use Laracasts\Flash\Flash;
 
 class ArticlesController extends Controller
 {
@@ -18,7 +21,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.articles.index');
     }
 
     /**
@@ -43,12 +46,30 @@ class ArticlesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
         //Manipulacion de Imagenes...
-        $file = $request->file('image');
-        $name = 'blogfacilito_'. time() . '.' . $file->getClientOriginalExtension();
-        $path = public_path() . '\images\articles\\';
-        $file->move($path, $name);
+        if($request->image)
+        {
+            $file = $request->file('image');
+            $name = 'blogfacilito_'. time() . '.' . $file->getClientOriginalExtension();
+            $path = public_path() . '\images\articles\\';
+            $file->move($path, $name);
+        }
+
+        $article = new Article($request->all());
+        $article->user_id = \Auth::user()->id;
+        $article->save();
+
+        $article->tags()->sync($request->tags); 
+
+        $image = new Image();
+        $image->name = $name;
+        //$image->article_id = $article->id; //Es valido pero traeria problemas
+        $image->article()->associate($article);
+        $image->save();
+
+        flash('Se ha creado el articulo; <b>'.$article->title.'</b> de forma satisfactoria')->success();
+        return redirect()->route('admin.articles.index');
     }
 
     /**
