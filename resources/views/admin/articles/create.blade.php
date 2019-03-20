@@ -15,7 +15,7 @@
 
 	<div class="form-group">
 		{!! Form::label('content','Contenido') !!}
-		{!! Form::textarea('content', null, ['class' => 'form-control','required']) !!}
+		{!! Form::textarea('content', null, ['class' => 'form-control textarea-content','required']) !!}
 	</div>
 
 	<div class="form-group">
@@ -38,6 +38,7 @@
 
 @section('js')
 	<script type="text/javascript">
+		/* Plugin Chosen para los Select Personalizados*/
 		$('.select-tag').chosen({
 			placeholder_text_multiple: 'Seleccione un maximo de 3 tags',
 			max_selected_options: 3,
@@ -46,5 +47,10 @@
 		$('.select-category').chosen({
 			placeholder_text_multiple: 'Seleccione una categoria'
 		});
+
+		/* Plugin Trumbowyg para cajas de textos largos */
+		$('.textarea-content').trumbowyg();
+
+
 	</script>
 @endsection
