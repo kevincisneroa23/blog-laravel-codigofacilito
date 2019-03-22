@@ -22,7 +22,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     	return view('welcome');
 	}]);
 
-
 	Route::resource('users','UsersController');
 	Route::get('users/{id}/destroy',[
 		'uses' => 'UsersController@destroy',
@@ -43,9 +42,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
 	Route::resource('articles', 'ArticlesController');
 	Route::get('articles/{id}/destroy', [
-		'uses' => 'articlesController@destroy',
+		'uses' => 'ArticlesController@destroy',
 		'as' => 'admin.articles.destroy'
 	]);	
+
+	Route::get('images', [
+		'uses' => 'ImagesController@index',
+		'as' =>	'admin.images.index'
+	]);
+
 });
 
 // Authentication routes...
