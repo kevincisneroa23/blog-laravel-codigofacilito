@@ -29,6 +29,6 @@ class Article extends Model
 
     public function scopeSearch($query, $title)
     {
-        return $query->where('title', 'LIKE', "%$name%");
+        return $query->where('title', 'LIKE', "%$title%");
     }
 }

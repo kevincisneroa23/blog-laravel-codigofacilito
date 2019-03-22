@@ -23,12 +23,17 @@ class ArticlesController extends Controller
      */
     public function index(Request $request)
     {
-        $articles = Article::search($request->title)->orderBy('id','DESC')->paginate(3);
-        $articles->each(function($articles){
+        $articles = Article::search($request->title)->orderBy('id','DESC')->paginate(5);
+        $articles->each(function($articles)
+        {
             $articles->category;
             $articles->user;
         });
-        return view('admin.articles.index')->with(['articles' => $articles ,'search' => $request->title]);
+
+        return view('admin.articles.index')->with([
+            'articles' => $articles ,
+            'search' => $request->title
+        ]);
     }
 
     /**
@@ -40,10 +45,10 @@ class ArticlesController extends Controller
     {
         $categories = Category::orderBy('name', 'DESC')->lists('name','id');
         $tags = Tag::orderBy('name', 'ASC')->lists('name','id');
-        //dd($categories);
-        return view('admin.articles.create')
-        ->with('categories', $categories)
-        ->with('tags', $tags);
+        return view('admin.articles.create')->with([
+            'categories' => $categories,
+            'tags' => $tags
+        ]);
     }
 
     /**
@@ -98,7 +103,18 @@ class ArticlesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article = Article::find($id);
+        $categories = Category::orderBy('name','DESC')->lists('name','id');
+        $tags = Tag::orderBy('name','DESC')->lists('name','id');
+        $my_tags = $article->tags->lists('id')->ToArray();
+
+        //dd($my_tags);
+       return view('admin.articles.edit')->with([
+        'article' => $article,
+        'categories' => $categories,
+        'tags' => $tags,
+        'my_tags' => $my_tags
+       ]);
     }
 
     /**
@@ -110,7 +126,13 @@ class ArticlesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $article = Article::find($id);
+        $article->fill($request->all());
+        $article->save();
+
+        $article->tags()->sync($request->tags);
+        flash('El articulo '.$article->name.' ha sido actualizado exitosamente')->success();
+        return redirect()->route('admin.articles.index');
     }
 
     /**
@@ -121,6 +143,9 @@ class ArticlesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $article = Article::find($id);
+        $article->delete();
+        flash('El articulo '.$article->name.' ha sido eliminado exitosamente')->error();
+        return redirect()->route('admin.articles.index');
     }
 }
