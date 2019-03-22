@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTagsTable extends Migration
+class UpdateArticleTag extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +12,11 @@ class AddTagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->timestamps();
-        });
-    
         /*Articles &  tags = article & tag = article_tag*/
-        Schema::create('article_tag', function(Blueprint $table){
+        Schema::table('article_tag', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('article_id')->unsigned();
-            $table->integer('tag_id')->unsigned();
+            $table->integer('article_id')->unsigned()->change();
+            $table->integer('tag_id')->unsigned()->change();;
             $table->timestamps();
 
             $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
@@ -38,6 +31,6 @@ class AddTagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tags');
+        //
     }
 }
