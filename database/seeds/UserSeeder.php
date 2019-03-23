@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-class DatabaseSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,11 +12,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
-        // $this->call(UserTableSeeder::class);
-            $this->call(UserSeeder::class);
-        
-
-        Model::reguard();
+        factory(App\User::class, 5)->create();
     }
 }
