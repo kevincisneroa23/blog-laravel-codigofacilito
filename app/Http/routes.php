@@ -10,16 +10,19 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+//RUTAS DEL FRONTED
 
-Route::get('/', ['as' => 'admin.index', function () {
-	return view('welcome');
-}]);
+	Route::get('/', [
+		'as' => 'front.index', 
+		'uses' => 'FrontController@index'
+	]);
 
+//RUTAS DEL PANEL DE ADMINISTRACION
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	
 	Route::get('/', ['as' => 'admin.index', function () {
-    	return view('welcome');
+    	return view('admin.index');
 	}]);
 
 	Route::resource('users','UsersController');
