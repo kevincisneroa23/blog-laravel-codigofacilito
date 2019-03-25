@@ -1,6 +1,8 @@
 @extends('front.template.main')
 @section('title', 'Home')
 @section('content')
+
+
 <h3>Ultimos Articulos </h3>
 <div class="row">
 	<div class="col-md-8">
@@ -17,9 +19,9 @@
 						</a>
 						<h3 class="text-center">{{ $article->title }}</h3>
 						<hr>						
-						<i class="fa fa folder-open-o"></i> <a href="#">{{ $article->category->name }}</a>
+						<i class="glyphicon glyphicon-folder-open "></i>&nbsp;&nbsp;<a href="#">{{ $article->category->name }}</a>
 						<div class="pull-right">
-							<i class="fa fa-clock-o"></i> Hace 3 minutos.
+							<i class="fa fa-clock-o"></i> {{ $article->created_at->diffForHumans() }}
 						</div>
 					</div>
 				</div>

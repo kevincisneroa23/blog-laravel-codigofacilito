@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Article;
 use App\Category;
 use App\Tag;
-
+use Carbon\Carbon;
 class FrontController extends Controller
 {
     /**
@@ -17,6 +17,12 @@ class FrontController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        Carbon::setlocale('es');
+    }
+
     public function index()
     {
         $articles = Article::orderBy('id','DESC')->paginate(4);
