@@ -17,6 +17,16 @@
 		'uses' => 'FrontController@index'
 	]);
 
+	Route::get('categories/{name}', [
+		'as' => 'front.search.category',
+		'uses' => 'FrontController@searchCategory'
+	]);
+
+	Route::get('tags/{name}', [
+		'as' => 'front.search.tag',
+		'uses' => 'FrontController@searchTag'
+	]);
+
 //RUTAS DEL PANEL DE ADMINISTRACION
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){

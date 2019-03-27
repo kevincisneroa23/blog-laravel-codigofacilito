@@ -18,7 +18,10 @@
 						</a>
 						<h3 class="text-center">{{ $article->title }}</h3>
 						<hr>						
-						<i class="glyphicon glyphicon-folder-open "></i>&nbsp;&nbsp;<a href="#">{{ $article->category->name }}</a>
+						<i class="glyphicon glyphicon-folder-open "></i>&nbsp;&nbsp;
+							<a href="{{ route('front.search.category', $article->category->name) }}">
+							{{ $article->category->name }}
+							</a> 
 						<div class="pull-right">
 							<i class="fa fa-clock-o"></i> {{ $article->created_at->diffForHumans() }}
 						</div>
