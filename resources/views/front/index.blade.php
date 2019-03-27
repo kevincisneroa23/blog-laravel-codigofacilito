@@ -2,7 +2,6 @@
 @section('title', 'Home')
 @section('content')
 
-
 <h3>Ultimos Articulos </h3>
 <div class="row">
 	<div class="col-md-8">
@@ -32,38 +31,7 @@
 	</div><!--col-8-->
 
 	<div class="col-md-4 aside">
-		<div class="panel panel-danger">
-			<div class="panel-heading">
-				<h3 class="panel-title">Categorias</h3>
-			</div>
-			<div class="panel-body">
-				<ul class="list-group">
-					<li class="list-group-item">
-						<span class="badge">14</span> Noticias
-					</li>
-					<li class="list-group-item">
-						<span class="badge">10</span> Programacion
-					</li>
-					<li class="list-group-item">
-						<span class="badge">5</span> Tips
-					</li>
-				</ul>
-			</div>
-		</div>
-
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				<h3 class="panel-title">Tags</h3>
-			</div>
-			<div class="panel-body">
-				
-				<span class="label label-default">Default</span>
-				<span class="label label-default">Default</span>
-				<span class="label label-default">Default</span>
-				<span class="label label-default">Default</span>
-				<span class="label label-default">Default</span>
-			</div>
-		</div>
+		@include('front.partials.aside')
 	</div><!--col-4-->
 </div><!--row-->
 @endsection()
