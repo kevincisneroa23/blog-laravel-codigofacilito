@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>@yield('title','Home') | Blog Facilito</title>
+	<link rel="stylesheet" href="{{ asset('css/general.css') }}">
 	<link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.css') }}">
 </head>
 <body>

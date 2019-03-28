@@ -15,7 +15,7 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(['front.index', 'front.articles'],'App\Http\ViewComposers\AsideComposer');
+        View::composer(['front.index', 'front.article'],'App\Http\ViewComposers\AsideComposer');
     }
 
     /**

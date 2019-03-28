@@ -27,6 +27,13 @@
 		'uses' => 'FrontController@searchTag'
 	]);
 
+	Route::get('articles/{id}', [
+		'as' => 'front.view.article',
+		'uses' => 'FrontController@viewArticle'
+	]);
+
+	
+
 //RUTAS DEL PANEL DE ADMINISTRACION
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
