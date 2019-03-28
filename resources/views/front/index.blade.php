@@ -9,7 +9,8 @@
     @endif
 </div>
 <br>
-<h3>Ultimos Articulos </h3>
+<h3> {{ trans('app.title_last_articles') }} </h3>
+<h5> {{ trans('app.test', ['name' => 'Kevin', 'company' => 'CodigoFacilito']) }}</h5>
 <div class="row">
 	<div class="col-md-8">
 		<div class="row">

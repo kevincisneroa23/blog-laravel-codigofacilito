@@ -42,12 +42,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     	return view('admin.index');
 	}]);
 
-	Route::resource('users','UsersController');
-	Route::get('users/{id}/destroy',[
-		'uses' => 'UsersController@destroy',
-		'as' => 'admin.users.destroy'
-	]);
-
 	Route::resource('categories', 'CategoriesController');
 	Route::get('category/{id}/destroy', [
 		'uses' => 'CategoriesController@destroy',
@@ -70,6 +64,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 		'uses' => 'ImagesController@index',
 		'as' =>	'admin.images.index'
 	]);
+
+	//RESTRINGIR SOLO A NIVEL ADMINISTRADOR
+	Route::group(['middleware' => 'admin'], function(){
+
+		Route::resource('users','UsersController');
+		Route::get('users/{id}/destroy',[
+			'uses' => 'UsersController@destroy',
+			'as' => 'admin.users.destroy'
+		]);
+
+	});
 
 });
 

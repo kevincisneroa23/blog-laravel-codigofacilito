@@ -40,4 +40,8 @@ class User extends Model implements AuthenticatableContract,
     public function articles(){
         return $this->hasMany('App\Article');
     }
+
+    public function admin(){
+        return $this->type === 'admin';
+    }
 }
