@@ -18,13 +18,13 @@
 			<div class="col-md-6 ">
 				<div class="panel">
 					<div class="panel-body box-article">
-						<a href="{{ route('front.view.article', $article->id) }}" >
+						<a href="{{ route('front.view.article', $article->title) }}" >
 							@foreach($article->images as $image)
 							<img src="{{ asset('images/articles/'.$image->name) }}" class="img-responsive img-article" alt="....">
 							@endforeach
 
 						</a>
-						<h3 class=" text-center"><a href="{{ route('front.view.article', $article->id) }}">{{ $article->title }}</a></h3>
+						<h3 class=" text-center"><a href="{{ route('front.view.article', str_slug($article->title, "_")) }}">{{ $article->title }}</a></h3>
 						<hr>						
 							<i class="glyphicon glyphicon-folder-open "></i>&nbsp;&nbsp;
 							<a href="{{ route('front.search.category', $article->category->name) }}">

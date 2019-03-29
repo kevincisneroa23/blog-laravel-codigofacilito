@@ -70,6 +70,7 @@ class ArticlesController extends Controller
 
         $article = new Article($request->all());
         $article->user_id = \Auth::user()->id;
+        $article->slug =  str_slug($article->title, "_");
         $article->save();
 
         $article->tags()->sync($request->tags); 
@@ -127,6 +128,7 @@ class ArticlesController extends Controller
     public function update(Request $request, $id)
     {
         $article = Article::find($id);
+        $article->slug =  str_slug($request->title, "_");
         $article->fill($request->all());
         $article->save();
 

@@ -27,7 +27,7 @@
 		'uses' => 'FrontController@searchTag'
 	]);
 
-	Route::get('articles/{id}', [
+	Route::get('articles/{title}', [
 		'as' => 'front.view.article',
 		'uses' => 'FrontController@viewArticle'
 	]);

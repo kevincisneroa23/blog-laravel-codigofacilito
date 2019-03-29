@@ -27,7 +27,8 @@ class ArticleRequest extends Request
             'title'         => 'min:8|max:250|required|unique:articles',
             'category_id'   => 'required',
             'content'       => 'min:50|required',
-            'image'         => 'max:1024|image|required'
+            'image'         => 'max:1024|image|required',
+            'slug'          => 'unique:slug'
         ];
     }
 }

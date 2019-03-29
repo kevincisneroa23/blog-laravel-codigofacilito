@@ -65,9 +65,10 @@ class FrontController extends Controller
         return view('front.index')->with('articles', $articles);
     }
 
-    public function viewArticle($id)
-    {
-        $article = Article::find($id);
+    public function viewArticle($title)
+    {   
+
+        $article = Article::where('slug', '=', "$title")->first();
         $article->category();
         $article->tags();
         return view('front.article')->with('article', $article);;
